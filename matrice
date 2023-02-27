@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep  9 08:33:09 2022
+
+@author: laurafilet
+"""
+
+# exemple 
+
+from numpy import array
+from numpy import diag
+from numpy import dot
+from numpy import transpose
+from numpy import zeros
+from numpy.linalg import det
+
+
+
+
+A = array([[1.,2],[3,4]])
+print("Determinant de A : ", det(A))
+
+# exercice 1
+
+A = array([[1.,2.],[-4.,-9.]])
+
+print ("Determinant de A : ", det(A))
+
+B = array([[1,-1j],[1j,1-1j]])
+
+print ("Determinant de B : ", det(B))
+
+C = array([[2,4,-1],[3,-1,1],[-1,-1,-1]])
+
+print("Determinant de C : ", det(C))
+
+D = array([[-1,-2,1,2],[1,1,1,1],[-1,1,-1,1],[-1,0,1,4]])
+
+print("Determinant de D : ", det(D))
+# si matrice avec un . ça donne un nombre avec e+15  -> équivalent to 0
+
+# exercice 2
+
+L = array([[1,0,0,0],[1,2,0,0],[1,2,3,0],[1,2,3,1]])
+
+Lt = transpose(L)
+L_t = L.T
+print  ("\nTransposée de L : \n",L_t)
+print("\nTransposée de L :\n",Lt)
+
+S = det(L)*det(Lt)
+S_s = det(dot(L,L.T))
+
+print("\nDeterminant de S : ",S)
+print(S_s)
+
+# exercice 3
+
+def exe_3(n,a,b,c):
+    M = zeros((n,n))
+    
+    for i in range(0,n,1):
+        M[i,i]=b
+    for i in range(0,n-1,1):
+        M[i+1,i]=a
+        M[i,i+1]=c   
+    return (M)
+print("Determinant de M : ", det(exe_3(4,2,3,1)))
+    
+
+def exe_3_v_2(n,a,b,c):
+    M = zeros((n,n))
+    M = M + b*diag(zeros(n))
+    
+    for i in range(0,n,1):
+        M[i,i]=b
+    for i in range(0,n-1,1):
+        M[i+1,i]=a
+        M[i,i+1]=c   
+    return (M)
+print("Determinant de M : ", det(exe_3_v_2(4,2,3,1)))
+    
+
+
+
+
